@@ -1,0 +1,5 @@
+# If you later move to a custom domain, update the Sitemap URL below to match.
+User-agent: *
+Allow: /
+
+Sitemap: https://sriqaacademy.org/sitemap.xml

@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   }
 
-  // ---------- Countdown timer to batch start (26 Aug 2026, IST) ----------
+  // ---------- Countdown timer to batch start (21 Sep 2026, IST) ----------
   function initCountdown(){
     const daysEl = document.getElementById('cdDays');
     const hoursEl = document.getElementById('cdHours');
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(!(daysEl && hoursEl && minutesEl && secondsEl && timerWrap)) return;
 
     // Batch start date. Change this line if the date/year is ever different.
-    const targetDate = new Date('2026-08-26T00:00:00+05:30').getTime();
+    const targetDate = new Date('2026-09-21T00:00:00+05:30').getTime();
 
     function pad(n){ return String(n).padStart(2, '0'); }
 

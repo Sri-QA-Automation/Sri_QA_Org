@@ -34,10 +34,30 @@ const courses = [
   }
 ];
 
-const reviews = [
-  { name: "Student Name 1", text: "The trainer explained every concept with real examples. I got confident for interviews." },
-  { name: "Student Name 2", text: "Live projects made the difference. I finally understood how testing works in companies." },
-  { name: "Student Name 3", text: "Doubts were cleared quickly and the placement support was really helpful." }
+// Success stories. Put each photo in the "images" folder and match the file name.
+// To add a student, copy one block, change the details, and add a comma between blocks.
+const stories = [
+  {
+    name: "Navaz Ahmed",
+    city: "Khammam",
+    role: "Test Engineer / Wipro",
+    photo: "images/navaz-ahmed.jpg",
+    text: "I loved how personal the training felt. Real projects, real feedback, and a mentor who explained the 'why' behind every automation pattern, not just the 'how'."
+  },
+  {
+    name: "Student Name 2",
+    city: "City",
+    role: "Job title / Company",
+    photo: "images/student-2.jpg",
+    text: "Live projects made the difference. I finally understood how testing works in companies."
+  },
+  {
+    name: "Student Name 3",
+    city: "City",
+    role: "Job title / Company",
+    photo: "images/student-3.jpg",
+    text: "Doubts were cleared quickly and the placement support was really helpful."
+  }
 ];
 // =================================
 
@@ -55,14 +75,67 @@ document.getElementById("courseGrid").innerHTML = courses.map(c => `
   </div>
 `).join("");
 
-// Render reviews
-document.getElementById("reviewGrid").innerHTML = reviews.map(r => `
-  <div class="card">
-    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-    <p>"${r.text}"</p>
-    <p class="review-name">${r.name}</p>
-  </div>
-`).join("");
+// Success stories carousel
+const storyEl = document.getElementById("story");
+const dotsEl = document.getElementById("carDots");
+let current = 0;
+let autoplay;
+
+function initials(name) {
+  return name.split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase();
+}
+
+function buildStory(i) {
+  const s = stories[i];
+  storyEl.innerHTML = `
+    <img class="story-photo" src="${s.photo}" alt="${s.name}" />
+    <div class="story-text">
+      <p class="quote">"${s.text}"</p>
+      <p class="story-name"><strong>${s.name}</strong><span class="story-city"> &middot; ${s.city}</span></p>
+      <p class="story-role">${s.role}</p>
+    </div>`;
+  const img = storyEl.querySelector(".story-photo");
+  // If the photo is missing, show the student's initials instead
+  img.addEventListener("error", () => {
+    const d = document.createElement("div");
+    d.className = "story-initials";
+    d.textContent = initials(s.name);
+    img.replaceWith(d);
+  });
+  dotsEl.querySelectorAll(".dot").forEach((d, idx) => d.classList.toggle("active", idx === i));
+}
+
+function showStory(i, animate = true) {
+  current = (i + stories.length) % stories.length;
+  if (!animate) { buildStory(current); return; }
+  storyEl.classList.add("fade");
+  setTimeout(() => { buildStory(current); storyEl.classList.remove("fade"); }, 200);
+}
+
+function startAutoplay() { stopAutoplay(); autoplay = setInterval(() => showStory(current + 1), 6000); }
+function stopAutoplay() { clearInterval(autoplay); }
+
+dotsEl.innerHTML = stories.map((_, i) => `<button class="dot" aria-label="Story ${i + 1}"></button>`).join("");
+dotsEl.querySelectorAll(".dot").forEach((d, i) => d.addEventListener("click", () => { showStory(i); startAutoplay(); }));
+document.getElementById("carPrev").addEventListener("click", () => { showStory(current - 1); startAutoplay(); });
+document.getElementById("carNext").addEventListener("click", () => { showStory(current + 1); startAutoplay(); });
+
+const carousel = document.getElementById("carousel");
+carousel.addEventListener("mouseenter", stopAutoplay);
+carousel.addEventListener("mouseleave", startAutoplay);
+
+// Swipe on phones
+let touchX = null;
+carousel.addEventListener("touchstart", e => { touchX = e.touches[0].clientX; }, { passive: true });
+carousel.addEventListener("touchend", e => {
+  if (touchX === null) return;
+  const diff = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(diff) > 50) { showStory(current + (diff < 0 ? 1 : -1)); startAutoplay(); }
+  touchX = null;
+});
+
+showStory(0, false);
+startAutoplay();
 
 // Mobile menu
 const navLinks = document.getElementById("navLinks");

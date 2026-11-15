@@ -30,13 +30,13 @@ h2 { font-size: 2rem; text-align: center; margin-bottom: 8px; }
 .full { width: 100%; }
 
 /* Navbar */
-.navbar { position: sticky; top: 0; background: #0b0b0b; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 50; }
+.navbar { position: sticky; top: 0; background: var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,0.25); z-index: 50; }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .logo-img { height: 62px; width: auto; border-radius: 10px; display: block; }
 .logo-fallback { display: none; align-items: center; gap: 10px; }
 .logo-mark { background: var(--primary); color: #fff; font-size: 0.85rem; line-height: 1.05; padding: 6px 9px; border-radius: 9px; font-weight: 800; text-align: center; }
-.logo-text { color: #fff; font-size: 1.2rem; font-weight: 700; }
+.logo-text { color: #0b0b0b; font-size: 1.4rem; font-weight: 800; letter-spacing: 0.3px; white-space: nowrap; }
 .footer-brand { color: #fff; font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; }
 .footer-tag { color: #ff8a3d; margin-bottom: 10px; }
 .footer-logo { height: 44px; width: auto; margin-bottom: 10px; }
@@ -44,10 +44,11 @@ h2 { font-size: 2rem; text-align: center; margin-bottom: 8px; }
 .badge { background: var(--accent); color: var(--dark); font-size: 0.7rem; padding: 3px 9px; border-radius: 999px; vertical-align: middle; margin-left: 6px; }
 /* brand badge styles are above */
 nav { display: flex; align-items: center; gap: 22px; }
-nav a { text-decoration: none; color: #e5e7eb; font-weight: 500; }
-nav a:hover { color: var(--primary); }
-nav a.btn { color: var(--white); }
-.menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #fff; }
+nav a { text-decoration: none; color: #0b0b0b; font-weight: 600; }
+nav a:hover { color: #fff; }
+nav a.btn { color: #fff; background: #0b0b0b; border-color: #0b0b0b; }
+nav a.btn:hover { background: #fff; color: #0b0b0b; border-color: #fff; }
+.menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #0b0b0b; }
 
 /* Hero */
 .hero { background: radial-gradient(circle at 80% 20%, #3a1a06, #0b0b0b 60%); padding: 50px 0 70px; position: relative; overflow: hidden; }
@@ -112,7 +113,7 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--primary); b
   .grid-3 { grid-template-columns: 1fr; }
   .hero h1 { font-size: 2.2rem; }
   .menu-toggle { display: block; }
-  nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #0b0b0b; flex-direction: column; padding: 18px 0; box-shadow: 0 8px 12px rgba(0,0,0,0.08); }
+  nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary); flex-direction: column; padding: 18px 0; box-shadow: 0 8px 12px rgba(0,0,0,0.08); }
   nav.open { display: flex; }
 }
 @media (max-width: 520px) {
@@ -143,12 +144,12 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--primary); b
 .dot.active { background: var(--primary); }
 
 /* Announcement bar */
-.announce { display: block; background: var(--primary); color: #0b0b0b; overflow: hidden; white-space: nowrap; text-decoration: none; font-weight: 700; font-size: 0.9rem; padding: 9px 0; }
+.announce { display: block; background: #0b0b0b; color: #fff; overflow: hidden; white-space: nowrap; text-decoration: none; font-weight: 700; font-size: 0.9rem; padding: 9px 0; }
 .announce-track { display: inline-flex; animation: announce-scroll 35s linear infinite; }
 .announce:hover .announce-track { animation-play-state: paused; }
 .announce-group { display: inline-flex; }
 .announce-group span { padding: 0 30px; }
-.announce-group span::before { content: "\2605"; margin-right: 10px; }
+.announce-group span::before { content: "\2605"; margin-right: 10px; color: var(--primary); }
 @keyframes announce-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* Where our students work */
@@ -156,10 +157,10 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--primary); b
 .alumni b { color: #fff; letter-spacing: 0.5px; }
 
 /* Tagline in the menu bar */
-.nav-tagline { color: #fff; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px; white-space: nowrap; }
-.nav-tagline em { color: var(--primary); font-style: normal; margin: 0 6px; }
+.nav-tagline { color: #0b0b0b; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px; white-space: nowrap; }
+.nav-tagline em { color: #fff; font-style: normal; margin: 0 6px; }
 .tag-mobile { display: none; }
-@media (max-width: 1050px) {
+@media (max-width: 1200px) {
   .nav-tagline { display: none; }
   .tag-mobile { display: inline-block; }
 }

@@ -9,6 +9,7 @@
   <meta property="og:title" content="SriQA | Learn Skills That Get You Hired" />
   <meta property="og:description" content="Job-focused training, live projects and placement support. Book a free demo class." />
   <meta property="og:type" content="website" />
+  <link rel="icon" href="logo.png" />
   <link rel="stylesheet" href="style.css" />
 
   <!-- Structured data helps Google show your institute in search results -->
@@ -28,7 +29,7 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="container nav-inner">
-      <a href="#home" class="logo">Sri<span>QA</span></a>
+      <a href="#home" class="logo"><img src="logo.png" alt="SriQA logo" class="logo-img" onerror="this.style.display='none'" />Sri<span>QA</span></a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
       <nav id="navLinks">
         <a href="#about">About</a>
@@ -68,6 +69,7 @@
             <option>Manual Testing</option>
             <option>Automation Testing (Selenium)</option>
             <option>API Testing</option>
+            <option>AI / LLM Testing</option>
             <option>Full Stack QA Combo</option>
           </select>
           <button type="submit" class="btn full">Get a Call Back</button>
@@ -95,7 +97,7 @@
     <div class="container">
       <h2>Our Courses</h2>
       <p class="subtitle">Choose a program that fits your goal. Edit these in the <code>courses</code> list in script.js.</p>
-      <div class="grid grid-3" id="courseGrid"></div>
+      <div class="grid course-grid" id="courseGrid"></div>
     </div>
   </section>
 
@@ -159,6 +161,7 @@
 
   <footer class="footer">
     <div class="container">
+      <img src="logo.png" alt="SriQA logo" class="footer-logo" onerror="this.style.display='none'" />
       <p>&copy; <span id="year"></span> SriQA. All rights reserved.</p>
     </div>
   </footer>

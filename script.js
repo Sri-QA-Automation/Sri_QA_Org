@@ -1,11 +1,11 @@
 // ====== EDIT THESE DETAILS ======
-const WHATSAPP_NUMBER = "+918247564178"; // country code + number, no + or spaces
+const WHATSAPP_NUMBER = "91XXXXXXXXXX"; // country code + number, no + or spaces
 
 const courses = [
   {
     title: "Manual Testing",
     duration: "6 weeks",
-    mode: "Online",
+    mode: "Online / Offline",
     points: ["Testing fundamentals and SDLC", "Test cases and bug reporting", "JIRA and real project practice"]
   },
   {
@@ -19,6 +19,18 @@ const courses = [
     duration: "4 weeks",
     mode: "Online",
     points: ["REST concepts", "Postman and automation", "Real API test scenarios"]
+  },
+  {
+    title: "AI / LLM Testing",
+    duration: "6 weeks",
+    mode: "Online / Offline",
+    badge: "New",
+    points: [
+      "How LLMs work and where they fail",
+      "Testing prompts, hallucinations, bias and safety",
+      "RAG and chatbot testing with evaluation tools",
+      "Prompt injection and red-teaming basics"
+    ]
   }
 ];
 
@@ -36,7 +48,7 @@ function waLink(message) {
 // Render courses
 document.getElementById("courseGrid").innerHTML = courses.map(c => `
   <div class="card course-card">
-    <h3>${c.title}</h3>
+    <h3>${c.title}${c.badge ? ` <span class="badge">${c.badge}</span>` : ""}</h3>
     <div class="course-meta"><span>&#9201; ${c.duration}</span><span>&#127760; ${c.mode}</span></div>
     <ul>${c.points.map(p => `<li>${p}</li>`).join("")}</ul>
     <a class="btn btn-small" href="${waLink("Hi, I want details about " + c.title)}" target="_blank" rel="noopener">Enquire Now</a>

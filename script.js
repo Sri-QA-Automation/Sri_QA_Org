@@ -143,11 +143,39 @@ document.getElementById("menuToggle").addEventListener("click", () => navLinks.c
 navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
 
 // WhatsApp forms
-document.getElementById("quickForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const msg = `Hi SriQA, I am ${qName.value}. Phone: ${qPhone.value}. I am interested in: ${qCourse.value}. Please call me back.`;
-  window.open(waLink(msg), "_blank");
+// Career paths card in the hero (edit the tabs and roles here)
+const careerPaths = [
+  { tab: "Software Testing", steps: ["Manual Tester", "QA Analyst", "Automation Engineer", "Senior QA Engineer", "Test Lead"] },
+  { tab: "Automation & API", steps: ["Automation Tester", "API Test Engineer", "SDET", "Senior SDET", "QA Architect"] },
+  { tab: "AI / LLM Testing", steps: ["QA Engineer", "AI Test Engineer", "LLM Evaluation Engineer", "Senior AI QA Engineer", "AI Quality Lead"] }
+];
+const careerTabs = document.getElementById("careerTabs");
+const careerSteps = document.getElementById("careerSteps");
+const careerProgress = document.getElementById("careerProgress");
+const careerCount = document.getElementById("careerCount");
+let careerIdx = 0;
+let careerTimer;
+
+function renderCareer(i) {
+  careerIdx = i;
+  careerTabs.innerHTML = careerPaths.map((p, n) => `<button class="career-tab${n === i ? " active" : ""}" data-i="${n}">${p.tab}</button>`).join("");
+  careerSteps.innerHTML = careerPaths[i].steps.map((s, n) => `<li><span class="step-no">0${n + 1}</span>${s}</li>`).join("");
+  careerProgress.innerHTML = careerPaths.map((_, n) => `<span class="seg${n === i ? " active" : ""}"></span>`).join("");
+  careerCount.textContent = `0${i + 1} / 0${careerPaths.length}`;
+}
+function startCareerRotation() {
+  clearInterval(careerTimer);
+  careerTimer = setInterval(() => renderCareer((careerIdx + 1) % careerPaths.length), 5000);
+}
+careerTabs.addEventListener("click", e => {
+  const b = e.target.closest(".career-tab");
+  if (b) { renderCareer(+b.dataset.i); startCareerRotation(); }
 });
+const careerCard = document.getElementById("careerCard");
+careerCard.addEventListener("mouseenter", () => clearInterval(careerTimer));
+careerCard.addEventListener("mouseleave", startCareerRotation);
+renderCareer(0);
+startCareerRotation();
 
 document.getElementById("contactForm").addEventListener("submit", e => {
   e.preventDefault();

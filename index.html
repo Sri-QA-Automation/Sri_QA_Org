@@ -42,6 +42,7 @@
   <header class="navbar">
     <div class="container nav-inner">
       <a href="#home" class="logo" aria-label="Sri QA Academy home"><img src="logo.png" alt="Sri QA Academy logo" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><span class="logo-fallback"><span class="logo-mark">Sri<br>QA</span><span class="logo-text">Sri QA Academy</span></span></a>
+      <span class="nav-tagline">Learn <em>|</em> Practice <em>|</em> Grow</span>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
       <nav id="navLinks">
         <a href="#about">About</a>
@@ -64,9 +65,10 @@
   <section class="hero" id="home">
     <div class="container hero-inner">
       <div class="hero-text">
-        <p class="tag">Learn | Practice | Grow</p>
-        <h1>Learn skills that <span>get you hired</span></h1>
-        <p>Practical training with live projects, expert trainers and placement support. Attend a free demo class before you decide.</p>
+        <p class="tag tag-mobile">Learn | Practice | Grow</p>
+        <h1>Build a QA career <span>ready for the AI era</span></h1>
+        <h2 class="hero-ask">Where do you want your QA career to go?</h2>
+        <p>Manual, Automation, API and AI / LLM Testing, taught with live projects and real feedback. Pick a path, see the roles it leads to, and attend a free demo class before you decide.</p>
         <div class="hero-buttons">
           <a href="#contact" class="btn">Book Free Demo</a>
           <a href="#courses" class="btn btn-outline">View Courses</a>
@@ -77,21 +79,12 @@
           <li><strong data-count="90">0</strong>% Placement support</li>
         </ul>
       </div>
-      <div class="hero-card">
-        <h3>Quick Enquiry</h3>
-        <form id="quickForm">
-          <input type="text" id="qName" placeholder="Your name" required />
-          <input type="tel" id="qPhone" placeholder="Phone number" required pattern="[0-9]{10}" title="Enter a 10 digit number" />
-          <select id="qCourse" required>
-            <option value="">Select course</option>
-            <option>Manual Testing</option>
-            <option>Automation Testing (Selenium)</option>
-            <option>API Testing</option>
-            <option>AI / LLM Testing</option>
-            <option>Full Stack QA Combo</option>
-          </select>
-          <button type="submit" class="btn full">Get a Call Back</button>
-        </form>
+      <div class="career-card" id="careerCard">
+        <div class="career-head"><span>CAREER PATHS</span><span id="careerCount">01 / 03</span></div>
+        <div class="career-tabs" id="careerTabs"></div>
+        <ol class="career-steps" id="careerSteps"></ol>
+        <div class="career-progress" id="careerProgress"></div>
+        <a href="#contact" class="btn full">Plan my path: free demo</a>
       </div>
     </div>
   </section>

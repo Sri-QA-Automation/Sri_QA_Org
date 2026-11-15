@@ -38,26 +38,54 @@ const courses = [
 // To add a student, copy one block, change the details, and add a comma between blocks.
 const stories = [
   {
-    name: "Navaz Ahmed",
-    city: "Khammam",
-    role: "Test Engineer / Wipro",
-    photo: "images/navaz-ahmed.jpg",
-    text: "I loved how personal the training felt. Real projects, real feedback, and a mentor who explained the 'why' behind every automation pattern, not just the 'how'."
-  },
-  {
-    name: "Student Name 2",
-    city: "City",
-    role: "Job title / Company",
-    photo: "images/student-2.jpg",
-    text: "Live projects made the difference. I finally understood how testing works in companies."
-  },
-  {
-    name: "Student Name 3",
-    city: "City",
-    role: "Job title / Company",
-    photo: "images/student-3.jpg",
-    text: "Doubts were cleared quickly and the placement support was really helpful."
-  }
+  name: "Navaz Ahmed",
+  city: "Khammam",
+  role: "Test Engineer / Wipro",
+  photo: "images/navaz-ahmed.jpg",
+  text: "I loved how personal the training felt. Real projects, real feedback, and a mentor who explained the 'why' behind every automation pattern, not just the 'how'."
+},
+{
+  name: "Vamsi",
+  city: "Hyderabad",
+  role: "Test Engineer / TCS",
+  photo: "images/vamsi.jpg",
+  text: "The hands-on sessions and practical assignments helped me understand automation much better. Working on real-time scenarios gave me the confidence to apply these concepts in my job."
+},
+{
+  name: "Indu Priya",
+  city: "Suryapet",
+  role: "SQL Developer / Infosys",
+  photo: "images/indu-priya.jpg",
+  text: "The training was well structured and easy to follow. Every topic was explained with practical examples, and I really appreciated the quick support whenever I had doubts."
+},
+{
+  name: "Abhishake",
+  city: "Hyderabad",
+  role: "Associate Engineer / Cognizant",
+  photo: "images/abhishake.jpg",
+  text: "What I liked most was the practical approach to learning. The assignments helped me gain hands-on experience, and the guidance made even complex automation concepts easier to understand."
+},
+{
+  name: "Ganesh",
+  city: "Hyderabad",
+  role: "Test Engineer / Wipro",
+  photo: "images/ganesh.jpg",
+  text: "The real-time project explanations were extremely useful. I learned how automation frameworks are designed and how testing is handled in actual industry projects."
+},
+{
+  name: "Sruthi",
+  city: "Khammam",
+  role: "AI Engineer / Infosys",
+  photo: "images/sruthi.jpg",
+  text: "The sessions gave me a great introduction to modern testing practices and AI-powered automation. The practical demonstrations and continuous guidance made the learning experience valuable."
+},
+{
+  name: "Sai Ram Reddy",
+  city: "Hyderabad",
+  role: "QA Engineer / Rezolve.ai",
+  photo: "images/sai-ram-redy.jpg",
+  text: "A great learning experience with a strong focus on industry practices. The real-world examples, interactive sessions, and mentor support helped me strengthen my QA automation skills."
+}
 ];
 // =================================
 

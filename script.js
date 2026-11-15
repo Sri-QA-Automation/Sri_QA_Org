@@ -38,26 +38,54 @@ const courses = [
 // To add a student, copy one block, change the details, and add a comma between blocks.
 const stories = [
   {
-    name: "Navaz Ahmed",
-    city: "Khammam",
-    role: "Test Engineer / Wipro",
-    photo: "images/navaz-ahmed.jpg",
-    text: "I loved how personal the training felt. Real projects, real feedback, and a mentor who explained the 'why' behind every automation pattern, not just the 'how'."
-  },
-  {
-    name: "Student Name 2",
-    city: "City",
-    role: "Job title / Company",
-    photo: "images/student-2.jpg",
-    text: "Live projects made the difference. I finally understood how testing works in companies."
-  },
-  {
-    name: "Student Name 3",
-    city: "City",
-    role: "Job title / Company",
-    photo: "images/student-3.jpg",
-    text: "Doubts were cleared quickly and the placement support was really helpful."
-  }
+  name: "Navaz Ahmed",
+  city: "Khammam",
+  role: "Test Engineer / Wipro",
+  photo: "images/navaz-ahmed.jpg",
+  text: "I loved how personal the training felt. Real projects, real feedback, and a mentor who explained the 'why' behind every automation pattern, not just the 'how'."
+},
+{
+  name: "Vamsi",
+  city: "Hyderabad",
+  role: "Test Engineer / TCS",
+  photo: "images/vamsi.jpg",
+  text: "The hands-on sessions and practical assignments helped me understand automation much better. Working on real-time scenarios gave me the confidence to apply these concepts in my job."
+},
+{
+  name: "Indu Priya",
+  city: "Suryapet",
+  role: "SQL Developer / Infosys",
+  photo: "images/indu-priya.jpg",
+  text: "The training was well structured and easy to follow. Every topic was explained with practical examples, and I really appreciated the quick support whenever I had doubts."
+},
+{
+  name: "Abhishake",
+  city: "Hyderabad",
+  role: "Associate Engineer / Cognizant",
+  photo: "images/abhishake.jpg",
+  text: "What I liked most was the practical approach to learning. The assignments helped me gain hands-on experience, and the guidance made even complex automation concepts easier to understand."
+},
+{
+  name: "Ganesh",
+  city: "Hyderabad",
+  role: "Test Engineer / Wipro",
+  photo: "images/ganesh.jpg",
+  text: "The real-time project explanations were extremely useful. I learned how automation frameworks are designed and how testing is handled in actual industry projects."
+},
+{
+  name: "Sruthi",
+  city: "Khammam",
+  role: "AI Engineer / Infosys",
+  photo: "images/sruthi.jpg",
+  text: "The sessions gave me a great introduction to modern testing practices and AI-powered automation. The practical demonstrations and continuous guidance made the learning experience valuable."
+},
+{
+  name: "Sai Ram Reddy",
+  city: "Hyderabad",
+  role: "QA Engineer / Rezolve.ai",
+  photo: "images/sai-ram-redy.jpg",
+  text: "A great learning experience with a strong focus on industry practices. The real-world examples, interactive sessions, and mentor support helped me strengthen my QA automation skills."
+}
 ];
 // =================================
 
@@ -142,40 +170,22 @@ const navLinks = document.getElementById("navLinks");
 document.getElementById("menuToggle").addEventListener("click", () => navLinks.classList.toggle("open"));
 navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
 
-// WhatsApp forms
-// Career paths card in the hero (edit the tabs and roles here)
-const careerPaths = [
-  { tab: "Software Testing", steps: ["Manual Tester", "QA Analyst", "Automation Engineer", "Senior QA Engineer", "Test Lead"] },
-  { tab: "Automation & API", steps: ["Automation Tester", "API Test Engineer", "SDET", "Senior SDET", "QA Architect"] },
-  { tab: "AI / LLM Testing", steps: ["QA Engineer", "AI Test Engineer", "LLM Evaluation Engineer", "Senior AI QA Engineer", "AI Quality Lead"] }
+// Roadmap card in the hero (edit the stages here)
+const roadmap = [
+  { title: "Manual Testing", sub: "Testing basics, test cases and bug reporting" },
+  { title: "Selenium", sub: "Web automation with Java and TestNG" },
+  { title: "Playwright", sub: "Modern, fast browser automation" },
+  { title: "AI / LLM Testing", sub: "Test chatbots, RAG and AI applications" },
+  { title: "CI / CD", sub: "Pipelines, Git and automated test runs" },
+  { title: "Architect", sub: "Design frameworks and lead QA strategy" }
 ];
-const careerTabs = document.getElementById("careerTabs");
-const careerSteps = document.getElementById("careerSteps");
-const careerProgress = document.getElementById("careerProgress");
-const careerCount = document.getElementById("careerCount");
-let careerIdx = 0;
-let careerTimer;
+document.getElementById("careerSteps").innerHTML = roadmap.map((r, n) => `
+  <li class="${n === roadmap.length - 1 ? "final" : ""}">
+    <span class="step-no">${n + 1}</span>
+    <div><strong>${r.title}</strong><small>${r.sub}</small></div>
+  </li>`).join("");
 
-function renderCareer(i) {
-  careerIdx = i;
-  careerTabs.innerHTML = careerPaths.map((p, n) => `<button class="career-tab${n === i ? " active" : ""}" data-i="${n}">${p.tab}</button>`).join("");
-  careerSteps.innerHTML = careerPaths[i].steps.map((s, n) => `<li><span class="step-no">0${n + 1}</span>${s}</li>`).join("");
-  careerProgress.innerHTML = careerPaths.map((_, n) => `<span class="seg${n === i ? " active" : ""}"></span>`).join("");
-  careerCount.textContent = `0${i + 1} / 0${careerPaths.length}`;
-}
-function startCareerRotation() {
-  clearInterval(careerTimer);
-  careerTimer = setInterval(() => renderCareer((careerIdx + 1) % careerPaths.length), 5000);
-}
-careerTabs.addEventListener("click", e => {
-  const b = e.target.closest(".career-tab");
-  if (b) { renderCareer(+b.dataset.i); startCareerRotation(); }
-});
-const careerCard = document.getElementById("careerCard");
-careerCard.addEventListener("mouseenter", () => clearInterval(careerTimer));
-careerCard.addEventListener("mouseleave", startCareerRotation);
-renderCareer(0);
-startCareerRotation();
+// WhatsApp forms
 
 document.getElementById("contactForm").addEventListener("submit", e => {
   e.preventDefault();

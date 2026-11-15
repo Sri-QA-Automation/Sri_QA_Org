@@ -171,8 +171,13 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--primary); b
 .career-tab { border: none; background: #f3f4f6; color: var(--dark); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.8px; text-transform: uppercase; padding: 10px 16px; border-radius: 999px; cursor: pointer; }
 .career-tab.active { background: var(--primary); color: #fff; }
 .career-steps { list-style: none; margin: 0 0 14px; padding: 0; }
-.career-steps li { position: relative; display: flex; align-items: center; gap: 14px; padding: 9px 0; font-weight: 600; color: var(--dark); }
-.career-steps li:not(:last-child)::after { content: ""; position: absolute; left: 16px; top: 43px; width: 2px; height: 18px; background: #fbd5b8; }
+.career-steps li { position: relative; display: flex; align-items: flex-start; gap: 14px; padding: 8px 0; color: var(--dark); }
+.career-steps li:not(:last-child)::after { content: ""; position: absolute; left: 16px; top: 42px; bottom: -8px; width: 2px; background: #fbd5b8; }
+.career-steps strong { display: block; font-size: 1rem; line-height: 1.3; }
+.career-steps small { display: block; color: #6b7280; font-weight: 500; font-size: 0.82rem; line-height: 1.3; }
+.career-steps li.final .step-no { background: var(--primary); color: #fff; box-shadow: 0 0 0 4px rgba(242, 107, 15, 0.2); }
+.career-steps li.final strong { color: var(--primary); }
+.career-steps { margin-bottom: 20px; }
 .step-no { width: 34px; height: 34px; flex-shrink: 0; border: 2px solid var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; color: var(--primary); background: #fff; }
 .career-progress { display: flex; gap: 10px; margin-bottom: 18px; }
 .seg { flex: 1; height: 4px; border-radius: 4px; background: #e5e7eb; }

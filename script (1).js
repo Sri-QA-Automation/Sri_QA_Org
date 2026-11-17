@@ -3,25 +3,22 @@ const WHATSAPP_NUMBER = "91XXXXXXXXXX"; // country code + number, no + or spaces
 
 const courses = [
   {
-    title: "Manual Testing",
-    duration: "6 weeks",
-    mode: "Online / Offline",
-    points: ["Testing fundamentals and SDLC", "Test cases and bug reporting", "JIRA and real project practice"]
-  },
-  {
-    title: "Automation Testing (Selenium)",
+    title: "Playwright with Python",
+    slug: "playwright-python-course",
     duration: "8 weeks",
     mode: "Online / Offline",
-    points: ["Java basics for testers", "Selenium WebDriver and TestNG", "Framework design and Git"]
+    points: ["Python basics for testers", "Playwright, pytest and Page Object Model", "API testing, reports and CI/CD"]
   },
   {
-    title: "API Testing",
-    duration: "4 weeks",
-    mode: "Online",
-    points: ["REST concepts", "Postman and automation", "Real API test scenarios"]
+    title: "Playwright with JavaScript",
+    slug: "playwright-javascript-course",
+    duration: "8 weeks",
+    mode: "Online / Offline",
+    points: ["JavaScript and TypeScript basics", "Playwright Test runner and POM", "Parallel runs, tracing and CI/CD"]
   },
   {
     title: "AI / LLM Testing",
+    slug: "ai-llm-testing-course",
     duration: "6 weeks",
     mode: "Online / Offline",
     badge: "New",
@@ -31,6 +28,27 @@ const courses = [
       "RAG and chatbot testing with evaluation tools",
       "Prompt injection and red-teaming basics"
     ]
+  },
+  {
+    title: "Automation Testing (Selenium)",
+    slug: "selenium-automation-testing-course",
+    duration: "8 weeks",
+    mode: "Online / Offline",
+    points: ["Java basics for testers", "Selenium WebDriver and TestNG", "Framework design and Git"]
+  },
+  {
+    title: "Manual Testing",
+    slug: "manual-testing-course",
+    duration: "6 weeks",
+    mode: "Online / Offline",
+    points: ["Testing fundamentals and SDLC", "Test cases and bug reporting", "JIRA and real project practice"]
+  },
+  {
+    title: "API Testing",
+    slug: "api-testing-course",
+    duration: "4 weeks",
+    mode: "Online",
+    points: ["REST concepts", "Postman and automation", "Real API test scenarios"]
   }
 ];
 
@@ -96,10 +114,13 @@ function waLink(message) {
 // Render courses
 document.getElementById("courseGrid").innerHTML = courses.map(c => `
   <div class="card course-card">
-    <h3>${c.title}${c.badge ? ` <span class="badge">${c.badge}</span>` : ""}</h3>
+    <h3><a href="${c.slug}.html">${c.title}</a>${c.badge ? ` <span class="badge">${c.badge}</span>` : ""}</h3>
     <div class="course-meta"><span>&#9201; ${c.duration}</span><span>&#127760; ${c.mode}</span></div>
     <ul>${c.points.map(p => `<li>${p}</li>`).join("")}</ul>
-    <a class="btn btn-small" href="${waLink("Hi, I want details about " + c.title)}" target="_blank" rel="noopener">Enquire Now</a>
+    <div class="course-actions">
+      <a class="btn btn-small" href="${c.slug}.html">View Syllabus</a>
+      <a class="btn btn-small btn-ghost" href="${waLink("Hi, I want details about " + c.title)}" target="_blank" rel="noopener">Enquire</a>
+    </div>
   </div>
 `).join("");
 

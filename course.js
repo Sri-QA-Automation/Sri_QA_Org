@@ -21,3 +21,27 @@ form.addEventListener("submit", e => {
 
 document.getElementById("waFloat").href = waLink("Hi Sri QA Academy, I would like to know more about the " + form.dataset.course + " course.");
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Syllabus: expand / collapse all
+document.querySelectorAll("[data-syl]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const open = btn.dataset.syl === "open";
+    document.querySelectorAll("details.phase").forEach(d => { d.open = open; });
+  });
+});
+
+// Class videos: play inside the page (the link still opens YouTube if JavaScript is off)
+document.querySelectorAll("a.video-thumb[data-yt]").forEach(a => {
+  a.addEventListener("click", ev => {
+    ev.preventDefault();
+    const f = document.createElement("iframe");
+    f.src = "https://www.youtube-nocookie.com/embed/" + a.dataset.yt + "?autoplay=1&rel=0";
+    f.title = a.getAttribute("aria-label") || "Class video";
+    f.allow = "accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen";
+    f.allowFullscreen = true;
+    const box = document.createElement("div");
+    box.className = "video-thumb";
+    box.appendChild(f);
+    a.replaceWith(box);
+  });
+});

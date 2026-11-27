@@ -3,24 +3,37 @@ const WHATSAPP_NUMBER = "91XXXXXXXXXX"; // country code + number, no + or spaces
 
 const courses = [
   {
+    title: "Industry-Standard Automation Tools",
+    slug: "industry-standard-automation-tools-course",
+    duration: "13 parts + project",
+    mode: "Online",
+    badge: "New",
+    points: [
+      "Python, Playwright, PyTest and Page Object Model",
+      "AI / LLM testing with DeepEval and Ollama",
+      "MCP server, AI agents and JMeter load testing",
+      "CI/CD with GitHub Actions and a final project"
+    ]
+  },
+  {
     title: "Playwright with Python",
     slug: "playwright-python-course",
     duration: "8 weeks",
-    mode: "Online / Offline",
+    mode: "Online",
     points: ["Python basics for testers", "Playwright, pytest and Page Object Model", "API testing, reports and CI/CD"]
   },
   {
     title: "Playwright with JavaScript",
     slug: "playwright-javascript-course",
     duration: "8 weeks",
-    mode: "Online / Offline",
+    mode: "Online",
     points: ["JavaScript and TypeScript basics", "Playwright Test runner and POM", "Parallel runs, tracing and CI/CD"]
   },
   {
     title: "AI / LLM Testing",
     slug: "ai-llm-testing-course",
     duration: "6 weeks",
-    mode: "Online / Offline",
+    mode: "Online",
     badge: "New",
     points: [
       "How LLMs work and where they fail",
@@ -33,14 +46,14 @@ const courses = [
     title: "Automation Testing (Selenium)",
     slug: "selenium-automation-testing-course",
     duration: "8 weeks",
-    mode: "Online / Offline",
+    mode: "Online",
     points: ["Java basics for testers", "Selenium WebDriver and TestNG", "Framework design and Git"]
   },
   {
     title: "Manual Testing",
     slug: "manual-testing-course",
     duration: "6 weeks",
-    mode: "Online / Offline",
+    mode: "Online",
     points: ["Testing fundamentals and SDLC", "Test cases and bug reporting", "JIRA and real project practice"]
   },
   {

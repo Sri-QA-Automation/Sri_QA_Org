@@ -1,6 +1,5 @@
 // Edit this file to update notes, assignments, materials and interview questions.
 const NOTES = [
-["Python basics","Variables, data types, list/dict/set/tuple, f-strings, loops, functions, classes, file handling, exceptions, virtual env (venv), pip."],
 ["Playwright setup","pip install pytest-playwright, then playwright install. Sync API for tests. Browser > BrowserContext > Page is the core hierarchy."],
 ["Locators","Prefer get_by_role, get_by_label, get_by_text, get_by_test_id. Use CSS/XPath last. Chain and filter with locator.locator(), .filter(), .nth()."],
 ["Auto-wait & assertions","Actions wait for visible, stable, enabled. Use expect(locator).to_be_visible() style web-first assertions; they retry. Avoid time.sleep."],
@@ -33,7 +32,8 @@ const ASSIGN = [
 ["AI","Use Playwright MCP to generate a test from a plain-English scenario. Review and fix the generated code."]
 ];
 const MATERIAL = [
-["Course slides","Playwright_with_Python_ppt.pptx","Slides used in class. Upload the file to the site folder and link it here."],
+["Python study material (PDF)","22 pages, 9 topics with examples","Python topics taught in class, with practice exercises.","Python_Study_Material_for_Test_Automation.pdf"],
+["Course slides","Playwright_with_Python_ppt.pptx","Slides used in class. Upload the file to the site folder, then add its file name as a 4th item here to show a link."],
 ["Class recordings","YouTube playlist","See the Class Videos section on the course page."],
 ["Official docs","playwright.dev/python","Primary reference for the API."],
 ["Pytest docs","docs.pytest.org","Fixtures, parametrize and markers."],
@@ -43,16 +43,20 @@ const MATERIAL = [
 // Each item: "Question|Answer"
 const QA = {
 "Python":[
-"What are Python's mutable and immutable types?|Mutable: list, dict, set. Immutable: int, str, tuple, frozenset.",
-"List vs tuple?|List is mutable and slower; tuple is immutable and can be a dict key.",
-"What is a decorator?|A function that wraps another function to add behaviour, used with @name.",
-"What is *args and **kwargs?|Variable positional arguments as a tuple, and keyword arguments as a dict.",
-"What is a virtual environment and why use it?|An isolated Python install per project so dependency versions don't clash.",
-"How do you handle exceptions?|try/except/else/finally. Catch specific exceptions, not bare except.",
-"What is a generator?|A function using yield that produces values lazily, saving memory.",
-"Explain list comprehension.|A short form to build lists: [x*2 for x in nums if x>0].",
-"What is the with statement?|A context manager that guarantees cleanup, such as closing a file.",
-"How do you read a JSON file?|with open('f.json') as f: data = json.load(f)."],
+"What are primitive and non-primitive data types in Python?|Primitive: int, float, complex, bool, str. Non-primitive: list, tuple, set, dict, range.",
+"What is type casting? Give an example.|Converting one type to another, e.g. set([1,1,2]) removes duplicates and list() converts it back.",
+"Why must set items and dictionary keys be unchangeable?|They are stored using hashing, which needs a fixed value, so numbers, strings and tuples work but lists do not.",
+"What is the difference between == and is?|== compares values; is checks whether both names point to the same object in memory.",
+"Compare list, tuple, set and dictionary.|List: ordered, changeable, duplicates allowed. Tuple: ordered, not changeable. Set: unordered, unique. Dict: key-value pairs with unique keys.",
+"What is the difference between append() and extend()?|append([1,2]) adds the list as one item; extend([1,2]) adds each item separately.",
+"What is the difference between d['key'] and d.get('key')?|d['key'] raises KeyError if missing; get() returns None or a default you give.",
+"How does string slicing work? What does s[::-1] give?|s[start:stop:step] stops before stop. s[::-1] reverses the string.",
+"What is the difference between print() and return in a function?|print() only shows a value; return sends it back so other code can use it, and code after return does not run.",
+"In what order are except blocks checked, and when does finally run?|Top to bottom, first match runs, so put specific errors first. finally always runs, error or not.",
+"What are __init__ and self?|__init__ is the constructor that runs when an object is created; self refers to that object and stores its own values.",
+"How does Python show public, protected and private?|m (public), _m (protected, by convention), __m (private, usable only inside the class).",
+"Explain inheritance types, overriding and super().|Single, multilevel and multiple inheritance. A child can override a parent method; super() calls the parent version, e.g. its constructor.",
+"What is an abstract class?|A class using ABC and @abstractmethod that child classes must complete; you cannot create an object from it directly."],
 "Playwright basics":[
 "What is Playwright?|An open-source tool by Microsoft for reliable cross-browser end-to-end automation.",
 "Which browsers does it support?|Chromium, Firefox and WebKit, headed or headless.",
@@ -132,11 +136,6 @@ const QA = {
 "A test passes locally but fails in CI. What do you check?|Headless differences, viewport, timing, test data, env variables, and the trace artifact.",
 "A test is flaky. How do you fix it?|Find the race: replace sleeps with web-first assertions, isolate data, check the trace, then consider retries."]
 };
-QA["Python"].push(
-"What is __init__ ?|The constructor that runs when an object is created.",
-"What is the difference between is and ==?|is compares identity; == compares value.",
-"What is a lambda?|A small anonymous one-line function.",
-"How do you read environment variables?|os.getenv('KEY') or python-dotenv's load_dotenv().");
 QA["Playwright basics"].push(
 "How do you record video?|Pass record_video_dir when creating the context.",
 "How do you handle cookies?|context.cookies(), context.add_cookies([...]), or storage_state.",
@@ -156,3 +155,39 @@ QA["Framework and POM"].push(
 QA["AI, MCP and scenarios"].push(
 "What is a hallucination in LLM testing?|A confident answer that is not supported by facts or source context.",
 "How would you test a chatbot UI with Playwright?|Send prompts, wait for the response element, assert key content, and use DeepEval for quality metrics.");
+
+// Python notes: summary of the class PDF (Python_Study_Material_for_Test_Automation.pdf)
+const PYNOTES = [
+["Data types and type casting","Primitive: int, float, complex, bool, str. Non-primitive: list, tuple, set, dict, range. Use type() to check. Casting converts types; a set removes duplicates. Hashing is why set items and dict keys must be unchangeable."],
+["Operators","Arithmetic, assignment, comparison, logical (and, or, not), identity (is, is not) and membership (in, not in). / always gives a float, // floors, ** is power."],
+["Conditional statements","if, elif, else check top to bottom and run only the first True block. Indentation matters. Combine conditions with and/or and nest when needed."],
+["Loops and range","for repeats over a collection; while repeats while a condition is True. range(start, stop, step) stops before stop. break exits the loop."],
+["Strings","Indexed from 0 (negative from the end), unchangeable. Slicing s[start:stop:step]. Methods: upper, lower, title, count, find, index, replace, strip, split, join. f-strings insert variables."],
+["List, tuple, set, dictionary","List: ordered and changeable. Tuple: ordered, fixed. Set: unique, unordered, union/intersection. Dict: unique keys. append vs extend, pop vs remove, dict.get(), nested dicts."],
+["Functions and importing","def with parameters and default values, return vs print, returning several values as a tuple, local vs outer variables, and from file import function."],
+["Exception handling","try, except (specific first, general last) and finally. Lets a failed step be handled so the run continues, e.g. element not found."],
+["Object-oriented programming","Class and object, __init__ and self, public/_protected/__private, inheritance (single, multilevel, multiple), overriding with super(), abstract classes with ABC."]
+];
+const PYASSIGN = [
+["Data types","Create one variable of every primitive type, print each value with its type(), and explain why '10' and 10 behave differently in '10' + '10' and 10 + 10."],
+["Type casting","Take a list with duplicate browser names, find the unique names using a set, then return a sorted list and print how many duplicates were removed."],
+["Operators","Without running it, predict the output of 17 // 5, 17 % 5, 2 ** 5, not (4 > 2 and 3 > 5) and 'a' in 'sriqa'. Then run and compare."],
+["Conditions","Write a login checker: given username and password, print 'Login success', 'Wrong password', 'User not found' or 'Fields empty' using if, elif, else and nesting."],
+["Loops","Print the multiplication table of any number using for and range, then print only the odd rows using step. Repeat the same with a while loop."],
+["Loops and break","Given a list of test case statuses, loop through and stop at the first 'FAIL' using break. Print how many tests ran before it."],
+["Strings","From the text '  Playwright With Python  ' strip the spaces, convert to title case, replace 'Python' with 'Pytest', split into words and print the longest word."],
+["Slicing","Take s = 'automation testing' and print the first word, last 7 characters, every second character and the reversed string, all using slicing."],
+["Lists","Create a list of 6 test names. Add one at the end, insert one at index 2, remove one by value, sort in reverse and print the final list and its length."],
+["Tuples and sets","Combine two tuples of browser names. Use sets to print the browsers common to both, the ones only in the first, and all unique browsers."],
+["Dictionary","Build a dictionary for a test result (id, name, status, steps as a list, environment as a nested dict). Print the environment's browser, add a duration key and update the status."],
+["Dictionary loop","Given a dict of 5 students and marks, loop with items() and print name and grade. Also print the student with the highest marks."],
+["Functions","Write a function with default parameters that returns the average of numbers. Write a second function that calls it and prints PASS if the average is above 40, else FAIL."],
+["Return values","Write a function that returns three values (min, max, total) of a list and unpack them into three variables."],
+["Importing","Put your functions in utils.py inside a folder called helpers. Import them into main.py using from helpers.utils import ... and call them."],
+["Exceptions","Write a divider that asks for two numbers and handles ZeroDivisionError and ValueError separately. Print 'done' in finally."],
+["Exceptions","Read a file name from the user, open it and print the content. Handle FileNotFoundError, and make sure 'cleanup complete' prints every time."],
+["OOP","Create a class Student with a constructor taking name and marks, and methods to print the result and to return True when marks are 35 or more. Create three objects."],
+["Inheritance","Create a class BasePage with a constructor storing a page title and a method open(). Create LoginPage(BasePage) that overrides open() and calls super()."],
+["Abstraction","Create an abstract class Browser with an abstract method launch(). Make Chrome and Firefox child classes that define launch(), and prove that Browser() cannot be created."],
+["Mini project","Build a small text-based test data manager: a dict-based user store, functions to add, find and delete users, exception handling for missing users, and a class that wraps everything."]
+];

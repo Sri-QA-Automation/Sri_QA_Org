@@ -8,6 +8,7 @@
   <link rel="canonical" href="https://sriqaacademy.org/playwright-python-resources.html" />
   <link rel="stylesheet" href="style.css" />
   <style>
+    .banner{margin-bottom:10px}.banner .btn{margin:8px 8px 0 0}.resume h3{margin:16px 0 8px;color:var(--primary-dark)}.resume h3:first-child{margin-top:0}.resume ul{padding-left:20px}.resume li{margin-bottom:6px}
     .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 26px}
     .tab{background:var(--white);color:var(--dark);border:2px solid var(--primary);border-radius:999px;padding:10px 22px;font-weight:600;cursor:pointer;font-size:1rem}
     .tab.on,.tab:hover{background:var(--primary);color:var(--white)}
@@ -53,10 +54,46 @@
         <button class="tab" data-p="assign">Assignments</button>
         <button class="tab" data-p="material">Training Material</button>
         <button class="tab" data-p="qa">Interview Questions (100)</button>
+        <button class="tab" data-p="resume">Sample Resume</button>
       </div>
-      <div id="notes" class="panel on"><div class="grid2" id="notesList"></div></div>
-      <div id="assign" class="panel"><div class="grid2" id="assignList"></div></div>
+      <div id="notes" class="panel on">
+        <div class="card banner"><h3>Python Study Material (PDF)</h3><p>The full class notes with examples and 11 practice exercises.</p><a class="btn" href="Python_Study_Material_for_Test_Automation.pdf" target="_blank" rel="noopener">Open PDF</a> <a class="btn btn-outline" href="Python_Study_Material_for_Test_Automation.pdf" download>Download</a></div>
+        <h3 class="qa-cat">Python topics (in class order)</h3><div class="grid2" id="pyNotesList"></div>
+        <h3 class="qa-cat">Playwright notes</h3><div class="grid2" id="notesList"></div></div>
+      <div id="assign" class="panel">
+        <h3 class="qa-cat">Python assignments (based on the class notes)</h3><div class="grid2" id="pyAssignList"></div>
+        <h3 class="qa-cat">Playwright assignments</h3><div class="grid2" id="assignList"></div></div>
       <div id="material" class="panel"><div class="grid2" id="matList"></div></div>
+      <div id="resume" class="panel">
+        <div class="card banner"><h3>Sample SDET / AI Test Automation Resume</h3><p>Use this as a model for structure and wording. Replace the details with your own real experience.</p><a class="btn" href="Sample_SDET_AI_Test_Automation_Resume.docx" download>Download Word (.docx)</a></div>
+        <div class="card resume">
+          <h3>Professional Summary</h3>
+          <p>Experienced Software Development Engineer in Test (SDET) with over 6 years of expertise in ensuring software quality through scalable test automation and modern AI-assisted engineering practices. Proficient in Playwright with Python, specializing in UI automation, REST API testing, database validation, and CI/CD integration. Strong command of Page Object Model (POM) architecture, Pytest, and Allure reporting. Skilled in accelerating test authoring, debugging, and framework maintenance using AI Agents, Model Context Protocol (MCP), and GitHub Copilot.</p>
+          <h3>Technical Skills</h3>
+          <ul class="syl-list">
+            <li><strong>Automation &amp; Testing Tools:</strong> Playwright, Pytest, Allure Reporting</li>
+            <li><strong>AI-Assisted Testing:</strong> GitHub Copilot, AI Agents, Model Context Protocol (MCP), Playwright MCP</li>
+            <li><strong>Programming Languages:</strong> Python, SQL</li>
+            <li><strong>Frameworks &amp; Architecture:</strong> Page Object Model (POM), Data-Driven &amp; Hybrid Frameworks</li>
+            <li><strong>Test &amp; Defect Management:</strong> Jira, qTest, Azure DevOps (TFS)</li>
+            <li><strong>Version Control &amp; CI/CD:</strong> Git, GitHub, GitHub Actions / CI/CD Pipelines</li>
+            <li><strong>Databases &amp; IDEs:</strong> PostgreSQL, Visual Studio Code</li>
+          </ul>
+          <h3>Professional Experience</h3>
+          <p><strong>Automation Test Engineer</strong> | Place | Date &ndash; Present</p>
+          <ul class="syl-list">
+            <li>Solely managed end-to-end QA activities for high-impact web applications, owning test strategy, automation architecture, test design, and execution.</li>
+            <li>Architected and automated full-scale application test suites using Playwright with Python in a Page Object Model (POM) framework, significantly improving regression coverage and execution speed.</li>
+            <li>Leveraged GitHub Copilot, AI Agents, and Model Context Protocol (MCP) servers (such as Playwright MCP) to accelerate test script generation, locator discovery, self-healing maintenance, and root-cause failure analysis.</li>
+            <li>Automated comprehensive backend validation suites covering REST APIs and PostgreSQL database queries using Playwright and Python.</li>
+            <li>Managed source code repositories in GitHub and configured automated CI/CD pipelines to trigger regression suites on every build with Allure reporting.</li>
+            <li>Authored, reviewed, and traced all functional and automated test cases in qTest, collaborating closely with Product Owners to align coverage with business requirements.</li>
+            <li>Delivered regular client-facing demos of automation progress, test execution metrics, and quality insights to stakeholders and Directors.</li>
+            <li>Independently maintained and stabilized dedicated QA test environments to ensure reliable end-to-end execution.</li>
+          </ul>
+          <p><strong>Tools &amp; Technologies:</strong> Playwright, Python, Pytest, GitHub Copilot, AI Agents, MCP (Model Context Protocol), Allure, Jira, qTest, GitHub, PostgreSQL</p>
+        </div>
+      </div>
       <div id="qa" class="panel">
         <div class="tools"><input id="q" type="search" placeholder="Search questions..." aria-label="Search questions" /><select id="cat" aria-label="Category"></select></div>
         <div class="count" id="count"></div>
@@ -84,9 +121,11 @@
     document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => { show(t.dataset.p); history.replaceState(null, "", "#" + t.dataset.p); }));
     show(location.hash.slice(1));
 
+    $("pyNotesList").innerHTML = PYNOTES.map((n, i) => `<div class="card"><span class="num">Topic ${i + 1}</span><h3>${esc(n[0])}</h3><p>${esc(n[1])}</p></div>`).join("");
+    $("pyAssignList").innerHTML = PYASSIGN.map((a, i) => `<div class="card"><span class="num">Assignment ${i + 1}</span><h3>${esc(a[0])}</h3><p>${esc(a[1])}</p></div>`).join("");
     $("notesList").innerHTML = NOTES.map((n, i) => `<div class="card"><span class="num">Topic ${i + 1}</span><h3>${esc(n[0])}</h3><p>${esc(n[1])}</p></div>`).join("");
-    $("assignList").innerHTML = ASSIGN.map((a, i) => `<div class="card"><span class="num">Assignment ${i + 1}</span><h3>${esc(a[0])}</h3><p>${esc(a[1])}</p></div>`).join("");
-    $("matList").innerHTML = MATERIAL.map(m => `<div class="card"><h3>${esc(m[0])}</h3><p><strong>${esc(m[1])}</strong></p><p>${esc(m[2])}</p></div>`).join("");
+    $("assignList").innerHTML = ASSIGN.map((a, i) => `<div class="card"><span class="num">Assignment ${i + 1 + PYASSIGN.length}</span><h3>${esc(a[0])}</h3><p>${esc(a[1])}</p></div>`).join("");
+    $("matList").innerHTML = MATERIAL.map(m => `<div class="card"><h3>${esc(m[0])}</h3><p><strong>${esc(m[1])}</strong></p><p>${esc(m[2])}</p>${m[3] ? `<a class="btn btn-small" href="${esc(m[3])}" target="_blank" rel="noopener">Open</a>` : ""}</div>`).join("");
 
     // Interview questions
     const all = [];

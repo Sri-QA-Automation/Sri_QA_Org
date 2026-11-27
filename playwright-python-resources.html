@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://sriqaacademy.org/playwright-python-resources.html" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    .lock{margin-top:22px;padding:24px;border:2px dashed var(--primary);border-radius:var(--radius);background:var(--light)}.lock .btn{margin:8px 8px 0 0}.banner{margin-bottom:10px}.banner .btn{margin:8px 8px 0 0}.resume h3{margin:16px 0 8px;color:var(--primary-dark)}.resume h3:first-child{margin-top:0}.resume ul{padding-left:20px}.resume li{margin-bottom:6px}
+    .lock{margin-top:22px;padding:24px;border:2px dashed var(--primary);border-radius:var(--radius);background:var(--light)}.lock .btn{margin:8px 8px 0 0}.viewer{margin:0 0 22px;max-width:760px}.viewer img{width:100%;height:auto;display:block;border:1px solid #d1d5db;border-radius:10px;-webkit-user-drag:none;user-select:none}.noaccess{margin-top:14px;padding:22px;border:2px dashed var(--primary);border-radius:var(--radius);background:var(--light)}.noaccess .btn{margin:8px 8px 0 0}.banner{margin-bottom:10px}.banner .btn{margin:8px 8px 0 0}.resume h3{margin:16px 0 8px;color:var(--primary-dark)}.resume h3:first-child{margin-top:0}.resume ul{padding-left:20px}.resume li{margin-bottom:6px}
     .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 26px}
     .tab{background:var(--white);color:var(--dark);border:2px solid var(--primary);border-radius:999px;padding:10px 22px;font-weight:600;cursor:pointer;font-size:1rem}
     .tab.on,.tab:hover{background:var(--primary);color:var(--white)}
@@ -58,6 +58,11 @@
         <button class="tab" data-p="resume">Sample Resume</button>
       </div>
       <div id="notes" class="panel on">
+        <div class="card banner"><h3>Python Study Material (PDF)</h3><p>22 pages of class notes with examples and practice exercises. Page 1 is a free preview.</p><button class="btn" id="openNotes" type="button">Open</button></div>
+        <div id="notesViewer" class="viewer" hidden>
+          <img oncontextmenu="return false" src="notes-preview-page1.jpg" alt="Python Study Material, page 1 preview" draggable="false" />
+          <div class="noaccess"><strong>&#128274; Pages 2 to 22: You don't have access</strong><p>The rest of this material is view-only for registered students. Ask for access and sign in with your approved Google account.</p><div id="viewerBtns"></div></div>
+        </div>
         <div class="grid2" id="pyNotesList"></div><div class="grid2" id="notesList" style="margin-top:18px"></div>
         <div class="lock" id="lockNotes"></div></div>
       <div id="assign" class="panel">
@@ -71,7 +76,7 @@
 
   <footer class="footer"><div class="container"><p>&copy; <span id="year"></span> Sri QA Academy. <a href="playwright-python-course.html">Back to course page</a></p></div></footer>
 
-  <script src="playwright-python-resources.js?v=3"></script>
+  <script src="playwright-python-resources.js?v=4"></script>
   <script>
     const $ = id => document.getElementById(id);
     const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
@@ -102,6 +107,11 @@
       const open = MEMBER_LINKS[key] ? `<a class="btn" href="${esc(MEMBER_LINKS[key])}" target="_blank" rel="noopener noreferrer">Open (view only)</a> ` : "";
       $(id).innerHTML = `<h3>&#128274; ${esc(title)}</h3><p>${esc(text)}</p>${open}<a class="btn btn-outline" href="${req}" target="_blank" rel="noopener noreferrer">Request access</a>`;
     }
+    $("openNotes").addEventListener("click", () => { const v = $("notesViewer"); v.hidden = !v.hidden; $("openNotes").textContent = v.hidden ? "Open" : "Close"; });
+    (function () {
+      const req = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent("Hi Sri QA Academy, I am a registered student. Please approve my email for the Python Study Material. My email: ");
+      $("viewerBtns").innerHTML = (MEMBER_LINKS.notes ? `<a class="btn" href="${esc(MEMBER_LINKS.notes)}" target="_blank" rel="noopener noreferrer">Open full material (approved students)</a>` : "") + `<a class="btn btn-outline" href="${req}" target="_blank" rel="noopener noreferrer">Request access</a>`;
+    })();
     lock("lockNotes", "Full Python and Playwright notes", "The complete class notes (22-page PDF) are view-only for registered students. Sign in with your approved Google account when the file opens.", "notes");
     lock("lockAssign", "All " + TOTALS.assignments + " assignments", "The remaining assignments are view-only for registered students.", "assignments");
     lock("lockQa", (TOTALS.interview - QA_PREVIEW.length) + " more interview questions with answers", "The full set of " + TOTALS.interview + " questions is view-only for registered students.", "interview");

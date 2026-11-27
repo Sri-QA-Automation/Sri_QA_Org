@@ -2,12 +2,22 @@
 const WHATSAPP_NUMBER = "91XXXXXXXXXX"; // same number as script.js
 
 // All buttons open the private members folder. To open one file directly instead, paste that file's Drive link here.
-const MEMBER_FOLDER = "https://drive.google.com/drive/folders/1Mu2xw1ErpYhQXRi2wTunizSVVqCKv0KW"; // private Drive folder, shared only with approved emails
+// One private Drive folder per section, each shared only with approved emails (Viewer).
 const MEMBER_LINKS = {
-  notes: MEMBER_FOLDER,       // Python_Study_Material_for_Test_Automation.pdf
-  assignments: MEMBER_FOLDER, // Assignments_Members.pdf
-  interview: MEMBER_FOLDER,   // Interview_Questions_100_Members.pdf
-  resume: MEMBER_FOLDER       // Sample_SDET_AI_Test_Automation_Resume.pdf
+  notes: "https://drive.google.com/drive/folders/1UB5ifRCJehXFQ7_Cv9aykwNPptHU-PX0",
+  assignments: "https://drive.google.com/drive/folders/1WhqpKEEMRM3qb5dv-Xl6BeEQGKAb-EZC",
+  interview: "https://drive.google.com/drive/folders/1OCvHm-bb3gtijTCsmICjqE3QeYpr3uD3",
+  resume: "https://drive.google.com/drive/folders/1k-1HCUgmz2aJCXBPcUwEriaF2GAdghFq"
+};
+
+
+// To show a file on this page (no redirect to Drive), paste that file's Drive share link (or just its ID) here.
+// Drive decides who can see it: only emails you added as Viewer. Others see "You need access" inside the frame.
+const FILE_LINKS = {
+  notes: "",       // Python_Study_Material_for_Test_Automation.pdf
+  assignments: "", // Assignments_Members.pdf
+  interview: "",   // Interview_Questions_100_Members.pdf
+  resume: ""       // Sample_SDET_AI_Test_Automation_Resume.pdf
 };
 
 const TOTALS = { notes: 9, assignments: 39, interview: 100 };
